@@ -1,5 +1,6 @@
 import dagreD3 from 'dagre-d3'
-import * as d3 from 'd3'
+import * as d3 from './dagD3importer'
+
 
 /**
  * Generate a graphId for the graph to support multi graph rendering

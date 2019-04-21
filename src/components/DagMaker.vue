@@ -4,13 +4,16 @@
     <div class="dag-panel">
       <dag :graph="editorValue"/>
     </div>
-    <el-button @click="displayFullScreen" style="position: absolute; top: 14px; right: 14px;" v-if="!fullScreen">全屏</el-button>
-    <el-button @click="displayFullScreen" style="position: absolute; top: 14px; right: 14px;" v-else>关闭全屏</el-button>
+    <button @click="displayFullScreen" class="full-screen-button" v-if="!fullScreen">全屏</button>
+    <button @click="displayFullScreen" class="full-screen-button" v-else>关闭全屏</button>
   </div>
 </template>
 
 <script>
-import * as monaco from "monaco-editor";
+import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js'
+import 'monaco-editor/esm/vs/editor/contrib/find/findController.js'
+import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
+import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'
 import Dag from "./Dag";
 
 const initialEditorValue = `graph = {
@@ -165,5 +168,26 @@ export default {
 .dag-panel {
   flex-grow: 1;
   height: 100vh;
+}
+
+.full-screen-button {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background-color: #fff;
+  border: 1px solid #dcdfe6;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 12px 20px;
+  border-radius: 4px;
+  transition: .1s;
+  font-weight: 500;
+  outline: none;
+  transition: .1s;
+}
+.full-screen-button:hover {
+  color: #409eff;
+  border-color: #c6e2ff;
+  background-color: #ecf5ff;
 }
 </style>
