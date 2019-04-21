@@ -50,7 +50,7 @@ module.exports = {
     // Paths
     assetsRoot: path.resolve(__dirname, '../dist'),
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/07akioni/dag-maker/master/release',
+    assetsPublicPath: 'https://raw.githubusercontent.com/07akioni/dag-maker/master/release/',
 
     /**
      * Source Maps
