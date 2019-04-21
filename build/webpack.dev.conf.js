@@ -66,7 +66,10 @@ const devWebpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new MonacoWebpackPlugin()
+    new MonacoWebpackPlugin({
+      languages: ['javascript'],
+      features: ['find']
+    })
   ]
 })
 
