@@ -14,7 +14,7 @@ import 'monaco-editor/esm/vs/editor/browser/controller/coreCommands.js'
 import 'monaco-editor/esm/vs/editor/contrib/find/findController.js'
 import * as monaco from 'monaco-editor/esm/vs/editor/editor.api.js'
 import 'monaco-editor/esm/vs/basic-languages/javascript/javascript.contribution'
-import Dag from "./Dag";
+import Dag from './Dag'
 
 const initialEditorValue = `graph = {
   /**
@@ -105,28 +105,28 @@ const initialEditorValue = `graph = {
 }`
 
 export default {
-  name: "DagMaker",
+  name: 'DagMaker',
   components: {
     Dag
   },
-  data() {
+  data () {
     return {
       resizeListenerId: null,
       fullScreen: false,
       editorValue: initialEditorValue
-    };
+    }
   },
   methods: {
-    displayFullScreen() {
-      this.fullScreen = !this.fullScreen;
+    displayFullScreen () {
+      this.fullScreen = !this.fullScreen
     },
-    renderEditor() {
+    renderEditor () {
       const editor = monaco.editor.create(this.$refs.editor, {
         value: initialEditorValue,
-        language: "javascript",
+        language: 'javascript',
         automaticLayout: true,
         scrollBeyondLastLine: false,
-        theme: "vs-dark",
+        theme: 'vs-dark',
         fontSize: 14,
         minimap: {
           enabled: false
@@ -134,13 +134,13 @@ export default {
       })
       editor.onDidChangeModelContent(e => {
         this.editorValue = editor.getValue()
-      });
+      })
     }
   },
-  mounted() {
-    this.renderEditor();
+  mounted () {
+    this.renderEditor()
   }
-};
+}
 </script>
 
 <style scoped>

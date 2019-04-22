@@ -30,10 +30,12 @@ export default {
       let graph = this.graph
       if (typeof this.graph === 'string') {
         try {
+          // eslint-disable-next-line no-eval
           if (this.graph.startsWith('{')) graph = eval(`graph = ${this.graph}`)
+          // eslint-disable-next-line no-eval
           else graph = eval(`${this.graph}`)
         } catch (err) {
-          console.log('parsing error')
+          // console.log('parsing error')
           return
         }
       }

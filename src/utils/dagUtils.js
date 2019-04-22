@@ -1,6 +1,7 @@
 import dagreD3 from 'dagre-d3'
 import * as d3 from './dagD3importer'
 
+/* eslint-disable no-lone-blocks, new-cap */
 
 /**
  * Generate a graphId for the graph to support multi graph rendering
@@ -26,10 +27,10 @@ function stringifyStyle (style) {
 
 /**
  * Generate options for the graph
+ * rankdirOptions = ['TB', 'LR', 'BT', 'RL']
+ * alignOptions = ['UL', 'UR', 'DL', 'DR']
  */
 function graphOptions (options) {
-  const rankdirOptions = ['TB', 'LR', 'BT', 'RL']
-  const alignOptions = ['UL', 'UR', 'DL', 'DR']
   const defaultOptions = {
     rankdir: 'TB',
     align: undefined
@@ -40,7 +41,7 @@ function graphOptions (options) {
 
 /**
  * TODO: More friendly error message.
- * @param {object} graph 
+ * @param {object} graph
  */
 function validateGraph (graph) {
   if (!graph || typeof graph !== 'object') {
@@ -92,17 +93,17 @@ function nodeOptions (node) {
   }
   return Object.assign(defaultOption, node, {
     style: stringifyStyle(Object.assign(defaultStyle, node.style)),
-    labelStyle: stringifyStyle(Object.assign(defaultLabelStyle, node.labelStyle)),
+    labelStyle: stringifyStyle(Object.assign(defaultLabelStyle, node.labelStyle))
   })
 }
 
 /**
  * Generate link's options based on default link options
+ * curveOptions = ['curveBasis', 'curveLinear', 'curveMonotoneX',
+ *   'curveMonotoneY', 'curveStep', 'curveNatural', 'curveBundle',
+ *   'curveCatmullRom']
  */
 function linkOptions (link) {
-  const curveOptions = ['curveBasis', 'curveLinear', 'curveMonotoneX',
-    'curveMonotoneY', 'curveStep', 'curveNatural', 'curveBundle',
-    'curveCatmullRom']
   const arrowheadOptions = ['normal', 'vee', 'undirected']
   const labelposOptions = ['c', 'l', 'r']
   const defaultStyle = {
@@ -119,14 +120,14 @@ function linkOptions (link) {
     padding: '4px 8px 5px 8px'
   }
   const defaultArrawheadStyle = {
-    fill: '#ededed',
+    fill: '#ededed'
   }
   const defaultOptions = {
     label: '',
     arrowhead: arrowheadOptions[0],
     labelpos: labelposOptions[0],
-    curve: d3['curveBasis'],
-    
+    curve: d3['curveBasis']
+
   }
   return Object.assign(defaultOptions, link, {
     style: stringifyStyle(Object.assign(defaultStyle, link.style)),
@@ -174,7 +175,7 @@ function d3DagGraph (graph, options) {
 }
 
 /**
- * 
+ *
  * @param {string} el selector for svg
  */
 function setBackgroundForText (el) {
@@ -196,8 +197,8 @@ function calculateOffset (defaultOffset, offset, containerLength, graphLength) {
 
 /**
  *
- * @param {Element} group 
- * @param {object} graph 
+ * @param {Element} group
+ * @param {object} graph
  * @param {string} el selector for svg
  */
 function setInitOffsetAndZoom (group, graph, el, graphOptions) {
@@ -224,12 +225,12 @@ function renderDag (el, graph) {
   {
     /** Validate selected element */
     if (!svg) throw Error(`No element is selected using \`${el}\`.`)
-    else if (svg && svg.tagName !== 'svg') throw Error(`Selected element's tag is not \'svg\'.`)
+    else if (svg && svg.tagName !== 'svg') throw Error(`Selected element's tag is not \`svg\`.`)
   }
   {
     /** Clean svg and append a group to it */
     const g = createSvgElement('g')
-    svg.innerHTML = ""
+    svg.innerHTML = ''
     svg.appendChild(g)
   }
   let options = graphOptions(graph.options)
@@ -237,7 +238,7 @@ function renderDag (el, graph) {
     /** convert input graph to a D3 graph */
     graph = d3DagGraph(validateGraph(graph), options)
   } catch (err) {
-    console.log('catch', err.message)
+    // console.log('catch', err.message)
     return
   }
   {
